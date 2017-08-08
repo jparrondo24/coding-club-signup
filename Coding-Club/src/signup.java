@@ -11,11 +11,11 @@
 public class signup {
     public static void main(String[] args) {
         System.out.println("Welcome to Coding Club Signup");
-        System.out.println(capitalizeLastName("MY NAME IS JEFF"));
+        System.out.println(capitalizeFirstName("FULANO"));
+        System.out.println(capitalizeLastName("DE TAL"));
     }
     public static String capitalizeFirstName(String fName) {
-        String word = fName.substring(0, 1).toUpperCase(0, 1)
-                      + fName.susbtring(1).toLowerCase();
+        String word = fName.substring(0, 1).toUpperCase() + fName.substring(1).toLowerCase();
         
         return word;
     }
