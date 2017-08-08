@@ -8,29 +8,39 @@ Requirements
 
 Sample Input 1-
 ------------
-First Name: Justin \n
-Last Name: Parrondo \n
-Email: jparrondo20255@columbushs.com \n
+First Name: Justin
+
+Last Name: Parrondo
+
+Email: jparrondo20255@columbushs.com
+
 
 Sample Output 1-
 -------------
 (stdout):
 ---------
-Thank you for signing up Justin! \n
+Thank you for signing up Justin!
+
 
 (in emails.txt)
 --------
-jparrondo20255@columbushs.com \n
+jparrondo20255@columbushs.com
+
 
 Sample Input 2
 ------------
-First Name: lazy \n
-Last Name: guy \n
-Email: lazyguy@gmail.com \n
+First Name: lazy
+
+Last Name: guy
+
+Email: lazyguy@gmail.com
+
 
 Sample Output 2-
 ----------
-(stdout): \n
-Enter your valid Columbus email please!: \n
+(stdout):
+
+Enter your valid Columbus email please!:
+
 
 *Note that the name lazy guy should be fixed to Lazy Guy before going into the database
