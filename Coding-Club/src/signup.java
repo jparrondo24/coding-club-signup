@@ -13,6 +13,7 @@ public class signup {
         System.out.println("Welcome to Coding Club Signup");
         System.out.println(capitalizeFirstName("FULANO"));
         System.out.println(capitalizeLastName("DE TAL"));
+        System.out.println(isValidColumbushsEmail("d1@gmail.com"));
     }
     public static String capitalizeFirstName(String fName) {
         String word = fName.substring(0, 1).toUpperCase() + fName.substring(1).toLowerCase();
@@ -31,7 +32,20 @@ public class signup {
     
     public static boolean isValidColumbushsEmail(String email) {
         // TODO: Return meaningful response
+        String[] s = email.split("@");
+        if (s.length != 2 ) {
+            System.out.println("Invalid email. Try again.");
+            return false;
+        }
+        if (!s[1].equals("columbushs.com")){
+            System.out.println("Use columbushs email!");
+            return false;
+        }
         
+        if(!s[0].matches("^[a-z0-9]+$")){
+            System.out.println("Invalid email. Try again.");
+            return false;
+        }
         return true;
     }
     
