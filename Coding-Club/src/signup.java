@@ -14,16 +14,17 @@ public class signup {
         System.out.println(capitalizeLastName("MY NAME IS JEFF"));
     }
     public static String capitalizeFirstName(String fName) {
-        // TODO: Return meaningful response
+        String word = fName.substring(0, 1).toUpperCase(0, 1)
+                      + fName.susbtring(1).toLowerCase();
         
-        return "Justin";
+        return word;
     }
     
     public static String capitalizeLastName(String lName) {
-        // TODO: Return meaningful response
         String[] words = lName.split(" ");
         for (int i = 0; i < words.length;i++){
-            words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1).toLowerCase();
+            words[i] = words[i].substring(0,1).toUpperCase()
+                       + words[i].substring(1).toLowerCase();
         }
         return String.join(" ", words);
     }
