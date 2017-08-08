@@ -11,17 +11,21 @@
 public class signup {
     public static void main(String[] args) {
         System.out.println("Welcome to Coding Club Signup");
+        System.out.println(capitalizeLastName("MY NAME IS JEFF"));
     }
-    public static String capatalizeFirstName(String fName) {
+    public static String capitalizeFirstName(String fName) {
         // TODO: Return meaningful response
         
         return "Justin";
     }
     
-    public static String capatalizeLastName(String lName) {
+    public static String capitalizeLastName(String lName) {
         // TODO: Return meaningful response
-        
-        return "Parondo";
+        String[] words = lName.split(" ");
+        for (int i = 0; i < words.length;i++){
+            words[i] = words[i].substring(0,1).toUpperCase() + words[i].substring(1).toLowerCase();
+        }
+        return String.join(" ", words);
     }
     
     public static boolean isValidColumbushsEmail(String email) {
