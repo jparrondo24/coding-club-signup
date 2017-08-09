@@ -1,3 +1,6 @@
+
+import java.util.Scanner;
+
 /**
  *
  * @author 19279
@@ -5,9 +8,23 @@
 public class signup {
     public static void main(String[] args) {
         System.out.println("Welcome to Coding Club Signup");
-        System.out.println(capitalizeFirstName("FULANO"));
-        System.out.println(capitalizeLastName("DE TAL"));
-        System.out.println(isValidColumbushsEmail("d1@gmail.com"));
+        while (true) {
+            Scanner fNameScan = new Scanner(System.in);
+            System.out.print("Enter First Name > ");
+            String fName = fNameScan.next();
+            
+            Scanner lNameScan = new Scanner(System.in);
+            System.out.print("Enter Last Name > ");
+            String lName = lNameScan.nextLine();
+            
+            Scanner emailScan = new Scanner(System.in);
+            System.out.print("Enter Columbus Email > ");
+            String email = emailScan.nextLine();
+            if (!isValidColumbushsEmail(email)){
+                continue;
+            }
+            submitInformation(fName,lName,email);
+        }
     }
     public static String capitalizeFirstName(String fName) {
         String word = fName.substring(0, 1).toUpperCase() + fName.substring(1).toLowerCase();
@@ -36,15 +53,11 @@ public class signup {
             return false;
         }
         
-        if(!s[0].matches("^[a-z0-9]+$")){
+        if(!s[0].matches("^[a-z0-9-]+$")){
             System.out.println("Invalid email. Try again.");
             return false;
         }
         return true;
-    }
-    
-    public static void prompt(){
-        // TODO: Put prompt and logic in this function
     }
     
     public static void submitInformation(String fName, String lName, String email) {
