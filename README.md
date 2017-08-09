@@ -1,5 +1,10 @@
+Coding Club Sign Up!
+============
+Prerequisites
+----------
+- Put <a href="https://github.com/jparrondo24/coding-club-signup/blob/develop/Coding-Club/src/mysql-connector-java-5.1.43-bin.jar">this jar file</a> into <your-java-home>/jre/lib/ext/
 This is a simple, Java command-line program for users to sign up for the club at Club Fair
-=======
+--------
 Requirements
 --------
 1. A database to store all of the user's input
