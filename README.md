@@ -4,7 +4,7 @@ Prerequisites
 ----------
 - Put <a href="https://github.com/jparrondo24/coding-club-signup/blob/develop/Coding-Club/src/mysql-connector-java-5.1.43-bin.jar">this jar file</a> into \<your-java-home\>/jre/lib/ext/
 Description
-- A MySQL server with a database called signup with a table called users with the columns of id, name, and email. You may need to edit the variables USER and PASS in Coding-Club/src/MySQLConnection.java and recompile to configure it to your server's username and password
+- A MySQL server with a database called <strong>signup</strong> with a table called <strong>users</strong> with the columns of <strong>id</strong>, <strong>name</strong>, and <strong>email</strong>. You may need to edit the variables <strong>USER</strong> and <strong>PASS</strong> in <a href="https://github.com/jparrondo24/coding-club-signup/blob/develop/Coding-Club/src/MySQLAccess.java">Coding-Club/src/MySQLConnection.java</a> and recompile to configure it to your server's username and password
 -----------
 This is a simple, Java command-line program for users to sign up for the club at Club Fair
 --------
