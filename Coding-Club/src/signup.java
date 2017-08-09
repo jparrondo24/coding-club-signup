@@ -39,10 +39,11 @@ public class signup {
             String answer = answerScan.next();
             if (!answer.toLowerCase().equals("yes")) {
                 continue;
+            } else {
+                dataBase.addUser(id, String.format("%s %s", fName, lName), email);
+                System.out.println("Thank you for signing up " + fName + "!");
+                System.out.println("------------------------------------------------------------");
             }
-            dataBase.addUser(id, String.format("%s %s", fName, lName), email);
-            System.out.println("Thank you for signing up " + fName + "!");
-            System.out.println("------------------------------------------------------------");
         }
     }
     public static String capitalizeFirstName(String fName) {
