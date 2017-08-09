@@ -41,6 +41,7 @@ public class signup {
                 continue;
             } else {
                 dataBase.addUser(id, String.format("%s %s", fName, lName), email);
+                System.out.println();
                 System.out.println("Thank you for signing up " + fName + "!");
                 System.out.println("------------------------------------------------------------");
             }
