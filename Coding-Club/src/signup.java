@@ -7,23 +7,42 @@ import java.util.Scanner;
  */
 public class signup {
     public static void main(String[] args) {
-        System.out.println("Welcome to Coding Club Signup");
+        System.out.println("Welcome to Coding Club Signup!");
+	    MySQLAccess dataBase = new MySQLAccess();
+        System.out.println();
+        System.out.println();
         while (true) {
             Scanner fNameScan = new Scanner(System.in);
-            System.out.print("Enter First Name > ");
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.print("Enter First Name: ");
             String fName = fNameScan.next();
-            
+
+            if (fName.equals("exit")) {
+                dataBase.closeConnection();
+                System.exit(0);
+            }
+
             Scanner lNameScan = new Scanner(System.in);
-            System.out.print("Enter Last Name > ");
+            System.out.print("Enter Last Name: ");
             String lName = lNameScan.nextLine();
             
             Scanner emailScan = new Scanner(System.in);
-            System.out.print("Enter Columbus Email > ");
-            String email = emailScan.nextLine();
-            if (!isValidColumbushsEmail(email)){
+            String email = promptEmail(emailScan, 0);
+            int id = extractId(email);
+            System.out.println();
+            System.out.println("Is this correct? [yes/no]");
+            System.out.println(fName + " " + lName + "\t" + email);
+            System.out.println();
+            Scanner answerScan = new Scanner(System.in);
+            String answer = answerScan.next();
+            if (!answer.toLowerCase().equals("yes")) {
                 continue;
             }
-            submitInformation(fName,lName,email);
+            dataBase.addUser(id, String.format("%s %s", fName, lName), email);
+            System.out.println("Thank you for signing up " + fName + "!");
+            System.out.println("------------------------------------------------------------");
         }
     }
     public static String capitalizeFirstName(String fName) {
@@ -49,7 +68,6 @@ public class signup {
             return false;
         }
         if (!s[1].equals("columbushs.com")){
-            System.out.println("Use columbushs email!");
             return false;
         }
         
@@ -59,8 +77,40 @@ public class signup {
         }
         return true;
     }
-    
-    public static void submitInformation(String fName, String lName, String email) {
-        
+    public static int extractId(String e) {
+        int id;
+        String strId;
+        char idCells[] = {0, 0, 0, 0, 0};
+        for (int i = 0; i < e.length(); i++) {
+            if (e.charAt(i) >= '0' && e.charAt(i) <= '9') {
+                for (int j = 0; j < 5; j++) {
+                    idCells[j] = e.charAt(i + j);
+                }
+                break;
+            }
+        }
+        strId = new String(idCells);
+        id = Integer.parseInt(strId);
+        return id;
+    }
+    public static String promptEmail(Scanner sc, int i) {
+        String email = "";
+        if (i < 1) {
+            System.out.print("Enter Columbus email: ");
+            email = sc.next();
+            if (!isValidColumbushsEmail(email)) {
+                return promptEmail(sc, i + 1);
+            } else {
+                return email;
+            }
+        } else {
+            System.out.print("Use columbushs email!: ");
+            email = sc.next();
+            if (!isValidColumbushsEmail(email)) {
+                return promptEmail(sc, i + 1);
+            } else {
+                return email;
+            }
+        }
     }
 }
