@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class MySQLAccess {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -62,5 +63,27 @@ public class MySQLAccess {
             se.printStackTrace();
         }
     }
+    public String[] getEmails() {
+        ArrayList<String> emailList = new ArrayList<String>();
+        String sql = "SELECT email FROM users";
+        try {
+            Statement emailStatement = conn.createStatement();
+            // System.out.println("Created statement");
+            emailStatement.executeQuery(sql);
+            // System.out.println("Executed query");
+            ResultSet rs = emailStatement.getResultSet();
+            // System.out.println("Got result set");
+            while (rs.next()) {
+                emailList.add(rs.getString("email"));
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        String[] emails = new String[emailList.size()];
+        for (int i = 0; i < emails.length; i++) {
+            emails[i] = emailList.get(i);
+        }
 
+        return emails;
+    }
 }
