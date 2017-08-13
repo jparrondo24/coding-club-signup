@@ -17,7 +17,7 @@ public class signup {
             System.out.println();
             System.out.println();
             System.out.print("Enter First Name: ");
-            String fName = fNameScan.next();
+            String fName = capitalizeFirstName(fNameScan.next());
 
             if (fName.equals("exit")) {
                 dataBase.closeConnection();
@@ -26,7 +26,7 @@ public class signup {
 
             Scanner lNameScan = new Scanner(System.in);
             System.out.print("Enter Last Name: ");
-            String lName = lNameScan.nextLine();
+            String lName = capitalizeLastName(lNameScan.nextLine());
             
             Scanner emailScan = new Scanner(System.in);
             String email = promptEmail(emailScan, 0);
