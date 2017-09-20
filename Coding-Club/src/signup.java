@@ -6,11 +6,14 @@ import java.util.Scanner;
  * @author 19279
  */
 public class signup {
+    public static Emailer emailer = new Emailer();
+    public static MySQLAccess database = new MySQLAccess();
     public static void main(String[] args) {
         System.out.println("Welcome to Coding Club Signup!");
-	    MySQLAccess dataBase = new MySQLAccess();
         System.out.println();
         System.out.println();
+        emailer.initialize();
+        database.initialize();
         while (true) {
             Scanner fNameScan = new Scanner(System.in);
             System.out.println();
@@ -20,7 +23,7 @@ public class signup {
             String fName = capitalizeFirstName(fNameScan.next());
 
             if (fName.equals("exit")) {
-                dataBase.closeConnection();
+                database.closeConnection();
                 System.exit(0);
             }
 
@@ -37,10 +40,9 @@ public class signup {
             System.out.println();
             Scanner answerScan = new Scanner(System.in);
             String answer = answerScan.next();
-            if (!answer.toLowerCase().equals("yes")) {
-                continue;
-            } else {
-                dataBase.addUser(id, String.format("%s %s", fName, lName), email);
+            if (answer.toLowerCase().equals("yes")) {
+                database.addUser(id, String.format("%s %s", fName, lName), email);
+                emailer.sendThankYouMsg(email, fName);
                 System.out.println();
                 System.out.println("Thank you for signing up " + fName + "!");
                 System.out.println("------------------------------------------------------------");
@@ -96,7 +98,7 @@ public class signup {
         return id;
     }
     public static String promptEmail(Scanner sc, int i) {
-        String email = "";
+        String email;
         if (i < 1) {
             System.out.print("Enter Columbus email: ");
             email = sc.next();

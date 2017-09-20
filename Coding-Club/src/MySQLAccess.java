@@ -14,23 +14,36 @@ public class MySQLAccess {
     static final String USER = "root";
     static final String PASS = "Danjus17";
 
-    static Connection conn = null;
-    static Statement stmt = null;
+    Connection conn = null;
+    Statement stmt = null;
+    
+    boolean connectionSuccessful = false;
     public MySQLAccess() {
+        
+    }
+    
+    public void initialize() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            System.out.println("Connecting...");
+            System.out.println("Connecting to MySQL Server...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            connectionSuccessful = true;
         } catch (SQLException se) {
             //Handle errors for JDBC
-            se.printStackTrace();
+            //se.printStackTrace();
+            System.out.println("SQLException occured. SQL will not work this run. Data will not be stored.");
         } catch (Exception e) {
             //Handle errors for Class.forName
-            e.printStackTrace();
+            //e.printStackTrace();
+            System.out.println("An exception occured. SQL will not work this run. Data will not be stored.");
         }
     }
+    
     public void addUser(int id, String name, String email) {
+        if (!connectionSuccessful){
+            return;
+        }
         try {
             stmt = conn.createStatement();
         } catch (Exception e) {
@@ -50,6 +63,9 @@ public class MySQLAccess {
         }
     }
     public void closeConnection() {
+        if (!connectionSuccessful) {
+            return;
+        }
         try {
             if (stmt != null)
                 stmt.close();
@@ -64,7 +80,7 @@ public class MySQLAccess {
         }
     }
     public String[] getEmails() {
-        ArrayList<String> emailList = new ArrayList<String>();
+        ArrayList<String> emailList = new ArrayList<>();
         String sql = "SELECT email FROM users";
         try {
             Statement emailStatement = conn.createStatement();
